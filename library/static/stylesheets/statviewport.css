@@ -1,0 +1,200 @@
+
+#overlay4{
+    padding: 6%;
+    padding-right: 27.5%;
+    #field4{
+        padding: 30%;
+        background-color: whitesmoke;
+        border-radius: 1em;
+        z-index: 0;
+        .requests-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-height: 400px; 
+            width: 700px;
+            overflow-y: auto;
+        }
+
+        .request-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .request-details {
+                flex-grow: 1;
+            }
+
+            .request-actions {
+                display: flex;
+                gap: 10px;
+            }
+        }
+    }
+    #logo{
+        img{
+            position: absolute;
+            z-index: 0;
+            top: 30%; 
+            opacity: 0.15;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    }
+    #back{
+        img{
+            position: absolute;
+            top: 20%;
+            left: 10%;
+        }
+    }
+    #addsection{
+        position: absolute;
+        top: 32%;
+        left: 27.8%;
+    }
+    #addbook{
+        position: absolute;
+        top: 26%;
+        left: 27.8%;
+    }
+    #editbook{
+        position: absolute;
+        top: 26%;
+        left: 27.8%;
+    }
+    #approve{
+        position: absolute;
+        top: 28%;
+        left: 16%;
+        
+    }
+}
+#overlay5{
+    padding-right: 80%;
+    width: 100%;
+    position: absolute;
+    top:17.5%;
+    transform: translateX(75%);
+    #field5{
+        padding: 90% 0%;
+        background-color: whitesmoke;
+        border-radius: 1em;
+        z-index: 1;
+    }
+    h6{
+        color: whitesmoke;
+        padding-top: 4%;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    img{
+            width: 2em;
+            height: 2em;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+    }
+    #side1{
+        position: absolute;
+        background-color: #171717f6;
+        border-radius: 0.5em;
+        top: 12%;
+        left:2.5%;
+        width: 15%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        padding-left:1%; 
+        h6{
+            padding-left: 8%;
+        } 
+    }
+    #side2{
+        position: absolute;
+        background-color: #171717f6;
+        border-radius: 0.5em;
+        top: 25%;
+        left:2.5%;
+        width: 15%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        padding-left:1%;  
+        h6{
+            padding-left: 7%;
+        }
+    }
+    #side3{
+        position: absolute;
+        background-color: #171717f6;
+        border-radius: 0.5em;
+        top: 38%;
+        left:2.5%;
+        width: 15%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        padding-left:1%;  
+        h6{
+            padding-left: 11%;
+        }
+    }
+    #side4{
+        position: absolute;
+        background-color: #171717f6;
+        border-radius: 0.5em;
+        top: 51%;
+        left:2.5%;
+        width: 15%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        padding-left:1%; 
+        h6{
+            padding-left: 9%;
+        } 
+    }
+    #side5{
+        position: absolute;
+        background-color: #171717f6;
+        border-radius: 0.5em;
+        top: 64%;
+        left:2.5%;
+        width: 15%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        padding-left:1%;  
+        h6{
+            padding-left: 9%;
+        }
+    }
+    #side6{
+        position: absolute;
+        background-color: #171717f6;
+        border-radius: 0.5em;
+        top: 77%;
+        left:2.5%;
+        width: 15%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        padding-left:0.8%;  
+        h6{
+            padding-left: 6%;
+        }
+    }
+}

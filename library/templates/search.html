@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Bookly</title>
+    <link href="../static/brandcontent/logo.png" rel="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/stylesheets/view.css">
+</head>
+<body>
+    <!--navigation bar-->
+    <nav class="navbar fixed-top">
+        <div class="container">
+            <!--Brand Logo and others-->
+            <a class="navbar-brand" href="{{ url_for('home') }}" style="padding-left: 0%;"><img src="../static/brandcontent/logo.png" alt="Bookly library" width="50" height="50"></a>
+            <form class="d-flex col-md-5" role="search" action="{{ url_for('search') }}" method="get" onsubmit="return validateSearch()">
+                <input class="form-control" type="search" name="query" placeholder="Search" aria-label="Search">
+                <button type="submit" style="position: absolute; left:55%; border: none; background-color: white; top: 23px;"><img src="../static/icons/search.png" draggable="false" height="23px" width="auto"></button>
+            </form>
+            <div>
+            <a href="{{ url_for('statistics') }}">Dashboard</a>
+            <!--login and logout functionality-->
+            <a href="{{ url_for('loggedin') }}">Library</a>
+            <a href="{{ url_for('logout') }}"><button class="btn btn-danger" type="button">Log Out!</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <h3 style="position: absolute; left: 4%; top: 15%;">Search Results for "{{ query }}"</h3>
+        <div class="secbooks">
+            {% for book in books %}
+                <a href="{{ url_for('book_details', book_id=book.BookID) }}" class="secbook-container">
+                    <img src="data:image;base64,{{ book.thumbnail_base64 }}" alt="{{ book.BookName }}" class="secbook-thumbnail" style="border-radius: 7%;">
+                    <p style="opacity: 0.7;">{{ book.BookName }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    </main>
+    <script>
+        function validateSearch() {
+            const searchInput = document.querySelector('input[name="query"]');
+            const query = searchInput.value.trim();
+
+            if (query === '') {
+                alert('Please enter a search query.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

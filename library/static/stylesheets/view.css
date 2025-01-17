@@ -1,0 +1,170 @@
+.navbar{
+    background-color: #171717f6;
+    a{
+        text-decoration: none;
+        color:whitesmoke;
+        padding-left: 3em; 
+    }
+}
+
+.section-buttons {
+    position: absolute;
+    top: 22%;
+    right: 6%;
+    left: 6%;
+    display: flex;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+#scrollRightBtn{
+    position: absolute;
+    top: 23.1%;
+    right: 3%;   
+}
+
+#scrollLeftBtn{
+    position: absolute;
+    top: 23.1%;
+    left: 3%;   
+}
+.books {
+  position: absolute;
+  top: 42%;
+  left: 7%;
+  right: 7%;
+  display: flex;
+  width: 86%;
+  overflow-x: hidden;
+}
+
+.bestsellers {
+  position: absolute;
+  top: 85%;
+  left: 7%;
+  right: 7%;
+  display: flex;
+  width: 86%;
+  overflow-x: hidden;
+}
+  
+.book-container {
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+    text-decoration: none;
+    color: inherit;
+    flex: 0 0 auto; /* Prevent book containers from shrinking */
+    width: 120px; /* desired width for book containers */
+  }
+  
+.book-thumbnail {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+.book-container p {
+    margin-top: 10px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+#bookRightBtn{
+    position: absolute;
+    top: 52.5%;
+    right: 3%;   
+}
+
+#bookLeftBtn{
+    position: absolute;
+    top: 52.5%;
+    left: 3%;   
+}
+.secbooks {
+  position: absolute;
+  top: 22.5%;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.secbook-container {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+.secbook-thumbnail {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.secbook-container p {
+  margin-top: 10px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-details-container{
+  img{
+    position: absolute;
+    top: 19.5%;
+    left: 20%;
+    height: 550px;
+    width: auto;
+    border-radius: 5%;
+  }
+}
+
+.book-info {
+  position: absolute;
+  top: 22.5%;
+  left: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 50%;
+  word-wrap: break-word;
+}
+
+.book-info h1 {
+  font-size: 2.5rem;
+  word-break: break-word;
+}
+
+.book-info h5 {
+  font-size: 1.2rem;
+  word-break: break-word;
+}
+#feedbacks-get{
+  position: absolute; 
+  top:45%; 
+  left: 55%;
+  width:24%; 
+  height: 180px;
+  overflow-y: auto;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+#bestsellerRightBtn{
+  position: absolute;
+  top: 95.5%;
+  right: 3%;   
+}
+
+#bestsellerLeftBtn{
+  position: absolute;
+  top: 95.5%;
+  left: 3%;   
+}

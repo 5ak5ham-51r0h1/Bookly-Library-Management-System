@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Bookly</title>
+    <link href="../static/brandcontent/logo.png" rel="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/stylesheets/statistics.css">
+</head>
+<body>
+    <!--navigation bar-->
+    <nav class="navbar fixed-top">
+        <div class="container">
+            <!--Brand Logo and others-->
+            <a class="navbar-brand" href="{{ url_for('home') }}" style="padding-left: 0%;"><img src="../static/brandcontent/logo.png" alt="Bookly library" width="50" height="50"></a>
+            <div>
+            <a href="#" style="opacity: 0.5;">Dashboard</a>
+            <!--login and logout functionality-->
+            {% if current_user.user_type=='librarian' %}
+                   <a href="{{ url_for('manage') }}">Manage</a>
+            {% elif current_user.user_type=='user' %}
+                    <a href="{{ url_for('loggedin') }}">Library</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}"><button class="btn btn-danger" type="button">Log Out!</button></a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div id="overlay1"><div id="field1">
+            <div style="position:absolute; top: 4%; left: 40%;">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            {% if current_user.is_authenticated and current_user.user_type=='librarian' %}
+            <div id="graph">
+                <img src="data:image/png;base64,{{ graph_url }}">
+            </div>
+            {% elif current_user.is_authenticated and current_user.user_type=='user' %}
+            <div id="issued-books">
+                <h3><b>Issued/Bought Books</b></h3>
+                {% for request in user_requests %}
+                    {% if request.Status == 'Approved' or request.book_bought %}
+                            <a href="{{ url_for('book_details', book_id=request.book.BookID) }}" class="secbook-container">
+                                <img src="data:image;base64,{{ request.book.thumbnail_base64 }}" alt="{{ request.book.BookName }}" class="secbook-thumbnail" style="border-radius: 7%;">
+                                <p style="opacity: 0.7;">{{ request.book.BookName }}</p>
+                            </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div></div>
+        <div id="overlay2"><div id="field2">
+            <img src="../static/icons/user.png" draggable="false" width="120px" style="position: absolute; top: 17.5%; right: 25%;">
+            <div id="userdetails">
+                <h3><b>{{ current_user.username }}</b></h3></p>
+                <p>{{ current_user.email }}</p>
+                <p>{{ current_user.user_type.capitalize() }}</p>
+                <p>{{ current_user.user_tier.capitalize() }}</p>
+            </div>
+            {% if current_user.user_tier=='standard' and current_user.user_type=='user' %}
+                <a href="{{ url_for('upgrade_membership') }}" class="btn btn-warning" id="membership">Upgrade Membership @ $2.99</a>
+            {% elif current_user.user_tier=='premium' and current_user.user_type=='user' %}
+                <a href="{{ url_for('degrade_membership') }}" class="btn btn-warning" id="membership">Degrade Membership @ $0.00</a>
+            {% endif %}
+        </div></div>
+        <div id="overlay3"><div id="field3">
+            {% if current_user.is_authenticated and current_user.user_type=='librarian' %}
+            <div id="permithandle">
+            <h5 style="padding-bottom: 2%;"><b>Approve author permits</b></h5>
+            {% if pending_permits %}
+            <div class="permits-container">
+                {% for permit in pending_permits %}
+                <div class="permit-item">
+                    <div class="permit-details">
+                        <p>{{ permit.username }}</p>
+                    </div>
+                    <div class="permit-actions">
+                        <a href="{{ url_for('author_approval', user_id=permit.id) }}" class="btn btn-success">Approve</a>
+                        <a href="{{ url_for('author_regect', user_id=permit.id) }}" class="btn btn-danger">Reject</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>There are no pending book permits.</p>
+            {% endif %}
+        </div>
+        </div>
+
+            {% elif current_user.is_authenticated and current_user.user_type=='user' %}
+
+                {% if current_user.author_request==False and current_user.author_approval!=True %} 
+                    <div id="author-rights">
+                        <h4>Are you a book author?</h4></div>
+                        <div id="right"><a href="{{ url_for('author_request') }}" class="btn btn-primary">Request Author Rights</a></div>
+                    
+
+                {% elif current_user.author_request==True %} 
+                    <h5 style="opacity: 0.5; position: absolute; top: 40%; padding-right: 10%; left: 67.5%;">Author permission waiting approval by the librarian</h5>
+
+                {% elif current_user.author_approval==True %}
+                    <div id="authorwpermit" style="position: absolute; top: 45%; right: 15.5%;">
+                        <a href="{{ url_for('author_view') }}" class="btn btn-primary">Switch to author view</a>
+                    </div>
+                {% endif %} 
+            {% endif %} 
+        </div></div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

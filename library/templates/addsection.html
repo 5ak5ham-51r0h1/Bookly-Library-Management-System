@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Bookly</title>
+    <link href="../static/brandcontent/logo.png" rel="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/stylesheets/statistics.css">
+    <link rel="stylesheet" href="../static/stylesheets/statviewport.css">
+</head>
+<body>
+    <!--navigation bar-->
+    <nav class="navbar fixed-top">
+        <div class="container">
+        <!--Brand Logo and others-->
+        <a class="navbar-brand" href="{{ url_for('home') }}" style="padding-left: 0%;"><img src="../static/brandcontent/logo.png" alt="Bookly library" width="50" height="50"></a>
+        <div>
+        <a href="{{ url_for('statistics') }}">Dashboard</a>
+        <!--login and logout functionality-->
+        <a href="#" style="opacity: 0.5;">Manage</a>
+        <a href="{{ url_for('logout') }}"><button class="btn btn-danger" type="button">Log Out!</button></a>
+        </div>
+        </div>
+    </nav>
+    <main>
+        <div style="position:absolute; top: 20%; left: 29.2%; color: whitesmoke;">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div id="overlay4"><div id="field4">
+            <div id="back"><a href="{{ url_for('manage') }}"><img src="../static/icons/back.png" draggable="false" width="2.5%"></a></div>
+            <div id="addsection">
+                <h1><b>Add New Section</b></h1>
+                <form method="POST" action="{{ url_for('api_addsection') }}">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group pt-2 pb-2">
+                        {{ form.name.label(class="form-control-label") }}
+                        {% if form.name.errors %}
+                            {{ form.name(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                        {% else %}
+                                {{ form.name(class="form-control") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group pb-3">
+                        {{ form.description.label(class="form-control-label") }}
+                        {% if form.description.errors %}
+                            {{ form.description(class="form-control form-control-lg is-invalid",style="resize: none;", rows="5") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.description.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.description(class="form-control",style="resize: none;", rows="5") }}
+                        {% endif %}
+                    </div>
+                    <!--form submit button-->
+                    <div class="form-group pt-3 pb-3">
+                        {{ form.submit(class="btn btn-primary col-12") }}
+                    </div>
+                </form>
+            </div>
+        </div></div>
+        <div id="overlay5"><div id="field5">
+            <a href="{{ url_for('approve_issues') }}"><div id="side1"><div id="imgm"><img src="../static/icons/issue.png" draggable="false"></div><div id="textm"><h6>Approve Issue</h6></div></div></a>
+            <a href="{{ url_for('revoke_issues') }}"><div id="side2"><div id="imgm"><img src="../static/icons/contract.png" draggable="false"></div><div id="textm"><h6>Terminate Issue</h6></div></div></a>
+            <a href="{{ url_for('addsection') }}"><div id="side3"><div id="imgm"><img src="../static/icons/section.png" draggable="false"></div><div id="textm"><h6>Add Section</h6></div></div></a>
+            <a href="{{ url_for('addbook') }}"><div id="side4"><div id="imgm"><img src="../static/icons/book.png" draggable="false"></div><div id="textm"><h6>Add Book</h6></div></div></a>
+            <a href="{{ url_for('editbook') }}"><div id="side5"><div id="imgm"><img src="../static/icons/edit.png" draggable="false"></div><div id="textm"><h6>Edit Book</h6></div></div></a>
+            <a href="{{ url_for('remove') }}"><div id="side6"><div id="imgm"><img src="../static/icons/remove.png" draggable="false"></div><div id="textm"><h6>Remove Book/Section</h6></div></div></a>
+        </div></div>
+    </main>
+</body>
+</html>

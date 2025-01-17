@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Bookly</title>
+    <link href="../static/brandcontent/logo.png" rel="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/stylesheets/statistics.css">
+    <link rel="stylesheet" href="../static/stylesheets/statviewport.css">
+</head>
+<body>
+    <!--navigation bar-->
+    <nav class="navbar fixed-top">
+        <div class="container">
+        <!--Brand Logo and others-->
+        <a class="navbar-brand" href="{{ url_for('home') }}" style="padding-left: 0%;"><img src="../static/brandcontent/logo.png" alt="Bookly library" width="50" height="50"></a>
+        <div>
+        <a href="{{ url_for('statistics') }}">Dashboard</a>
+        <!--login and logout functionality-->
+        <a href="#" style="opacity: 0.5;">Manage</a>
+        <a href="{{ url_for('logout') }}"><button class="btn btn-danger" type="button">Log Out!</button></a>
+        </div>
+        </div>
+    </nav>
+    <main>
+        <div style="position:absolute; top: 20%; left: 29.2%; color: whitesmoke;">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div id="overlay4"><div id="field4">
+            <h1 style="position: absolute; top:50%; left: 30%; opacity: 0.6;">Coming Soon!</h1>
+        </div></div>
+        <div id="overlay5"><div id="field5">
+            <a href="#"><div id="side4" style="top: 32.5%;"><div id="imgm"><img src="../static/icons/book.png" draggable="false"></div><div id="textm"><h6>Add Book</h6></div></div></a>
+            <a href="#"><div id="side5" style="top: 45%;"><div id="imgm"><img src="../static/icons/edit.png" draggable="false"></div><div id="textm"><h6>Edit Book</h6></div></div></a>
+            <a href="#"><div id="side6" style="top: 57.5%;"><div id="imgm"><img src="../static/icons/remove.png" draggable="false"></div><div id="textm"><h6>Remove Book</h6></div></div></a>
+        </div></div>
+    </main>
+</body>
+</html>

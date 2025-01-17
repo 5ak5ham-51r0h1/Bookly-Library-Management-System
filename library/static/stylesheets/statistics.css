@@ -1,0 +1,162 @@
+body{
+    background-color: #121212;
+    overflow: hidden;
+}
+nav{
+    background-color: #171717f6;
+    a{
+        text-decoration: none;
+        color:whitesmoke;
+        padding-left: 3em; 
+    }
+}
+#overlay2{
+    padding-left: 65%;
+    padding-right: 7%;
+    width: 100%;
+    position: absolute;
+    top: 14.5%;
+    z-index: -1;
+    #field2{
+        padding: 29.5%;
+        background-color: whitesmoke;
+        border-radius: 1em;
+        #membership{
+            width:20%;
+            position: absolute;
+            top: 77.5%;
+            right: 11%;
+        }
+    }
+}
+#overlay3{
+    padding-left: 65%;
+    padding-right: 7%;
+    width: 100%;
+    position: absolute;
+    top:54%;
+    z-index: -1;
+    #field3{
+        padding: 35%;
+        background-color: whitesmoke;
+        border-radius: 1em;
+    }
+}
+#author-rights{
+    position: absolute;
+    top: 30%;
+    right: 13%;
+}
+#right{
+    position: absolute;
+    top: 55%;
+    right: 15%;
+}
+#permithandle{
+    position: absolute;
+    top: 15%;
+    left: 67.5%;
+}
+.permits-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 180px; 
+    max-width: 350px;
+    overflow-y: auto;
+}
+
+.permit-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+
+    .permit-details {
+        flex-grow: 1;
+    }
+
+    .permit-actions {
+        display: flex;
+        gap: 10px;
+    }
+}
+#overlay1 {
+    top: 15%;
+    bottom: 7%;
+    left: 7%;
+    position: absolute;
+    right: 37.5%;
+    #field1 {
+        padding: 34.5%;
+        background-color: whitesmoke;
+        border-radius: 1em;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        justify-content: center;
+        align-items: start;
+    }
+}
+
+#issued-books {
+    position: absolute;
+    top: 12.5%;
+    left: 4%;
+    right: 3%;
+    overflow-y: auto;
+    max-height: 500px;
+    h3 {
+        padding-bottom: 20px;
+    }
+}
+
+.secbooks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.secbook-container {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    width: 120px;
+    margin: 0 10px 20px 20px;
+}
+
+.secbook-thumbnail {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.secbook-container p {
+    margin-top: 10px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+#graph{
+    img{
+        position: absolute;
+        top: 3.5%;
+        left: 7%;
+        height: 550px;
+        border-radius: 1em;
+    }
+}
+#userdetails{
+    position: absolute;
+    top: 10%;
+    left: 77.5%;
+    p{
+        opacity: 0.6;
+    }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Bookly</title>
+    <link href="../static/brandcontent/logo.png" rel="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/stylesheets/view.css">
+</head>
+<body>
+    <!--navigation bar-->
+    <nav class="navbar fixed-top">
+        <div class="container">
+            <!--Brand Logo and others-->
+            <a class="navbar-brand" href="{{ url_for('home') }}" style="padding-left: 0%;"><img src="../static/brandcontent/logo.png" alt="Bookly library" width="50" height="50"></a>
+            <form class="d-flex col-md-5" role="search" action="{{ url_for('search') }}" method="get" onsubmit="return validateSearch()">
+                <input class="form-control" type="search" name="query" placeholder="Search" aria-label="Search">
+                <button type="submit" style="position: absolute; left:55%; border: none; background-color: white; top: 23px;"><img src="../static/icons/search.png" draggable="false" height="23px" width="auto"></button>
+            </form>
+            <div>
+            <a href="{{ url_for('statistics') }}">Dashboard</a>
+            <!--login and logout functionality-->
+            <a href="{{ url_for('loggedin') }}" style="opacity: 0.5;">Library</a>
+            <a href="{{ url_for('logout') }}"><button class="btn btn-danger" type="button">Log Out!</button></a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <h3 style="position: absolute; top: 15%; padding-left: 3%;"><b>Explore sections</b></h3>
+        <div class="section-buttons">
+            {% for section in sections %}
+            <div id="sec" class="p-2"><a href="{{ url_for('section_books', section_id=section.SectionID) }}"><button class="btn btn-primary">{{ section.SectionName }}</button></a></div>
+            {% endfor %}
+        </div>
+            <button id="scrollLeftBtn" class="btn btn-secondary">&laquo;</button>
+            <button id="scrollRightBtn" class="btn btn-secondary">&raquo;</button>
+        <h3 style="position: absolute; top: 32%; padding-left: 3%;"><b>Recently Added</b></h3>
+        <div class="books">
+            {% for book in recent_books %}
+                <a href="{{ url_for('book_details', book_id=book.BookID) }}" class="book-container">
+                    <img src="data:image;base64,{{ book.thumbnail_base64 }}" alt="{{ book.BookName }}" class="book-thumbnail" style="border-radius: 7%;">
+                    <p style="opacity: 0.7;">{{ book.BookName }}</p>
+                </a>
+            {% endfor %}
+        </div>
+            <button id="bookLeftBtn" class="btn btn-secondary">&laquo;</button>
+            <button id="bookRightBtn" class="btn btn-secondary">&raquo;</button>
+        <h3 style="position: absolute; top: 75%; padding-left: 3%;"><b>Bestsellers</b></h3>
+        <div class="bestsellers">
+            {% for book, issue_count in bestsellers %}
+            <a href="{{ url_for('book_details', book_id=book.BookID) }}" class="book-container">
+                <img src="data:image;base64,{{ book.thumbnail_base64 }}" alt="{{ book.BookName }}" class="book-thumbnail" style="border-radius: 7%;">
+                <p style="opacity: 0.7;">{{ book.BookName }}</p>
+            </a>
+            {% endfor %}
+        </div>
+        <button id="bestsellerLeftBtn" class="btn btn-secondary">&laquo;</button>
+        <button id="bestsellerRightBtn" class="btn btn-secondary">&raquo;</button>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        const sectionButtons = document.querySelector('.section-buttons');
+        const scrollLeftBtn = document.getElementById('scrollLeftBtn');
+        const scrollRightBtn = document.getElementById('scrollRightBtn');
+        scrollLeftBtn.addEventListener('click', () => {
+            sectionButtons.scrollLeft -= 250;
+        });
+
+        scrollRightBtn.addEventListener('click', () => {
+            sectionButtons.scrollLeft += 250;
+        });
+        const books = document.querySelector('.books');
+        const bookLeftBtn = document.getElementById('bookLeftBtn');
+        const bookRightBtn = document.getElementById('bookRightBtn');
+
+        bookLeftBtn.addEventListener('click', () => {
+            books.scrollLeft -= 250;
+        });
+
+        bookRightBtn.addEventListener('click', () => {
+            books.scrollLeft += 250;
+        });
+        const bestsellers = document.querySelector('.bestsellers');
+        const bestsellerLeftBtn = document.getElementById('bestsellerLeftBtn');
+        const bestsellerRightBtn = document.getElementById('bestsellerRightBtn');
+
+        bestsellerLeftBtn.addEventListener('click', () => {
+            bestsellers.scrollLeft -= 250;
+        });
+
+        bestsellerRightBtn.addEventListener('click', () => {
+            bestsellers.scrollLeft += 250; //
+        });
+        function validateSearch() {
+            const searchInput = document.querySelector('input[name="query"]');
+            const query = searchInput.value.trim();
+
+            if (query === '') {
+                alert('Please enter a search query.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
